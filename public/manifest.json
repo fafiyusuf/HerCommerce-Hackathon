@@ -1,0 +1,17 @@
+{
+  "name": "SergHub - Wedding Planning Platform",
+  "short_name": "SergHub",
+  "description": "Connect with verified local wedding vendors in Ethiopia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff8f0",
+  "theme_color": "#d4a5a5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
