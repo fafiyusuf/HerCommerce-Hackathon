@@ -3,6 +3,7 @@
 import { useAuth } from "@/lib/auth-context"
 import { addToCollection, isFavorite, toggleFavorite } from "@/lib/data"
 import { Heart, Plus, Star } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 interface VendorCardProps {
@@ -72,9 +73,11 @@ export function VendorCard({ id, name, rating, reviews, price, image, descriptio
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
-            View Details
-          </button>
+          <Link href={`/vendors/${id}`} className="flex-1">
+            <button className="w-full py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+              View Details
+            </button>
+          </Link>
           <button
             onClick={handleAddToCollection}
             className="px-3 py-2 bg-secondary text-foreground rounded-lg flex items-center gap-2"

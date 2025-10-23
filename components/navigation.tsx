@@ -23,16 +23,16 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#categories" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/categories" className="text-foreground hover:text-primary transition-colors">
               Categories
             </Link>
-            <Link href="#vendors" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/search" className="text-foreground hover:text-primary transition-colors">
               Vendors
             </Link>
-            <Link href="#testimonials" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/testimonials" className="text-foreground hover:text-primary transition-colors">
               Testimonials
             </Link>
-            <Link href="#about" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About
             </Link>
           </div>
@@ -72,28 +72,28 @@ export function Navigation() {
         {isOpen && (
           <div className="md:hidden pb-4 space-y-2">
             <Link
-              href="#categories"
+              href="/categories"
               className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Categories
             </Link>
             <Link
-              href="#vendors"
+              href="/search"
               className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Vendors
             </Link>
             <Link
-              href="#testimonials"
+              href="/testimonials"
               className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Testimonials
             </Link>
             <Link
-              href="#about"
+              href="/about"
               className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >

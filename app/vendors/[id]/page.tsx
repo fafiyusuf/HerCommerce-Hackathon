@@ -3,7 +3,7 @@
 import { BookingModal } from "@/components/booking-modal"
 import { Navigation } from "@/components/navigation"
 import { useAuth } from "@/lib/auth-context"
-import { addToCollection, vendors } from "@/lib/data"
+import { addToCollection, getVendorInventory, vendors } from "@/lib/data"
 import { Check, Mail, MapPin, Phone, Star } from "lucide-react"
 import { notFound } from "next/navigation"
 import { useState } from "react"
@@ -25,6 +25,10 @@ export default function VendorPage({ params }: VendorPageProps) {
   if (!vendor) {
     notFound()
   }
+
+  const baseInventory: any[] = (vendor as any).inventory || []
+  const extraInventory = getVendorInventory(vendor.id)
+  const inventory = [...baseInventory, ...extraInventory]
 
   const handleBookingSuccess = () => {
     setBookingSuccess(true)
@@ -174,6 +178,67 @@ export default function VendorPage({ params }: VendorPageProps) {
             ))}
           </div>
         </div>
+
+        {/* Inventory/Shop Items Section */}
+        {inventory.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-heading font-bold text-foreground mb-6">Available Items</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {inventory.map((item: any) => (
+                <div key={item.id} className="bg-card rounded-lg border border-border overflow-hidden">
+                  <div className="h-48 bg-muted">
+                    <img
+                      src={(item.images && item.images[0]) || "/placeholder.svg"}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4 space-y-2">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                      <span className="text-primary font-bold shrink-0">{item.price}</span>
+                    </div>
+                    {item.description && (
+                      <p className="text-sm text-muted-foreground line-clamp-2">{item.description}</p>
+                    )}
+                    {item.attributes && (
+                      <ul className="text-xs text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
+                        {Object.entries(item.attributes)
+                          .slice(0, 4)
+                          .map(([k, v]) => (
+                            <li key={k} className="truncate">
+                              <span className="uppercase">{k}:</span> {String(v)}
+                            </li>
+                          ))}
+                      </ul>
+                    )}
+                    <div className="pt-3 flex items-center gap-2">
+                      {user ? (
+                        <button
+                          onClick={() => {
+                            if (user.userType !== "couple") {
+                              alert("Only couples/event organizers can add to a collection")
+                              return
+                            }
+                            addToCollection(user.id, vendor.id, vendor.name, vendor.category || "unknown", item.title)
+                            alert("Item added to your collection")
+                          }}
+                          className="px-3 py-2 bg-secondary rounded-md text-sm"
+                        >
+                          Add to collection
+                        </button>
+                      ) : (
+                        <a href="/login" className="px-3 py-2 bg-secondary rounded-md text-sm">
+                          Sign in to save
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Contact Info Section */}
         <div className="bg-secondary rounded-xl p-8 border border-border">
