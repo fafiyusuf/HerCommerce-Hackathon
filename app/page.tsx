@@ -55,7 +55,7 @@ export default function Home() {
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Why Choose SergHub?</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Why Choose BrideHub?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We make wedding planning simple, transparent, and stress-free
             </p>
@@ -121,7 +121,7 @@ export default function Home() {
               Loved by Couples & Vendors
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              See what our community has to say about their SergHub experience
+              See what our community has to say about their BrideHub experience
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">Are You a Vendor?</h2>
           <p className="text-lg mb-8 opacity-90">
-            Join thousands of vendors earning more through SergHub. Reach couples actively planning their weddings.
+            Join thousands of vendors earning more through BrideHub. Reach couples actively planning their weddings.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -170,7 +170,7 @@ export default function Home() {
             Ready to Plan Your Dream Wedding?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of couples who have found their perfect vendors on SergHub
+            Join thousands of couples who have found their perfect vendors on BrideHub
           </p>
           <Link
             href="/signup"
@@ -186,7 +186,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-heading font-semibold text-foreground mb-4">SergHub</h3>
+              <h3 className="font-heading font-semibold text-foreground mb-4">BrideHub</h3>
               <p className="text-muted-foreground text-sm">
                 Making wedding planning easy and accessible for everyone in Ethiopia
               </p>
@@ -253,7 +253,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 SergHub. All rights reserved.</p>
+            <p>&copy; 2025 BrideHub. All rights reserved.</p>
           </div>
         </div>
       </footer>

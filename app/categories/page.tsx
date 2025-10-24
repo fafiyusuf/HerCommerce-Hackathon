@@ -8,17 +8,17 @@ export default function CategoriesPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-secondary py-12 md:py-16">
+      <section className="bg-secondary py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Browse Vendors</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">Browse Vendors</h1>
+          <p className="text-base text-muted-foreground max-w-2xl">
             Explore our curated selection of verified vendors across all categories
           </p>
         </div>
       </section>
 
       {/* Categories with Sidebar */}
-      <section className="py-16 md:py-24">
+      <section className="py-8 md:py-10">
         <CategoriesSidebar categories={categories} vendors={vendors} />
       </section>
 
@@ -27,7 +27,7 @@ export default function CategoriesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-heading font-semibold text-foreground mb-4">SergHub</h3>
+              <h3 className="font-heading font-semibold text-foreground mb-4">BrideHub</h3>
               <p className="text-muted-foreground text-sm">
                 Making wedding planning easy and accessible for everyone in Ethiopia
               </p>
@@ -94,7 +94,7 @@ export default function CategoriesPage() {
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 SergHub. All rights reserved.</p>
+            <p>&copy; 2025 BrideHub. All rights reserved.</p>
           </div>
         </div>
       </footer>

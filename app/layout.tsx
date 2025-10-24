@@ -15,7 +15,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "SergHub - Wedding Planning Made Easy in Ethiopia",
+  title: "BrideHub - Wedding Planning Made Easy in Ethiopia",
   description:
     "Connect with verified local wedding vendors in Ethiopia. Find makeup artists, caterers, photographers, decorators, venues, and entertainment for your perfect wedding.",
   keywords: [
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     "venues",
     "entertainment",
   ],
-  authors: [{ name: "SergHub" }],
-  creator: "SergHub",
-  publisher: "SergHub",
+  authors: [{ name: "BrideHub" }],
+  creator: "BrideHub",
+  publisher: "BrideHub",
   formatDetection: {
     email: false,
     telephone: false,
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://serghub.vercel.app",
-    siteName: "SergHub",
-    title: "SergHub - Wedding Planning Made Easy in Ethiopia",
+    siteName: "BrideHub",
+    title: "BrideHub - Wedding Planning Made Easy in Ethiopia",
     description:
       "Connect with verified local wedding vendors in Ethiopia. Find everything you need for your perfect wedding.",
     images: [
@@ -50,15 +50,15 @@ export const metadata: Metadata = {
         url: "https://serghub.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "SergHub - Wedding Planning Platform",
+        alt: "BrideHub - Wedding Planning Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SergHub - Wedding Planning Made Easy",
+    title: "BrideHub - Wedding Planning Made Easy",
     description: "Connect with verified local wedding vendors in Ethiopia",
-    creator: "@serghub",
+    creator: "@bridehub",
   },
   robots: {
     index: true,

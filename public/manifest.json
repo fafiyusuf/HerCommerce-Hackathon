@@ -1,6 +1,6 @@
 {
-  "name": "SergHub - Wedding Planning Platform",
-  "short_name": "SergHub",
+  "name": "BrideHub - Wedding Planning Platform",
+  "short_name": "BrideHub",
   "description": "Connect with verified local wedding vendors in Ethiopia",
   "start_url": "/",
   "display": "standalone",

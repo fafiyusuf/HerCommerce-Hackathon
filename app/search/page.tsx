@@ -196,7 +196,7 @@ export default function SearchPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-heading font-semibold text-foreground mb-4">SergHub</h3>
+              <h3 className="font-heading font-semibold text-foreground mb-4">BrideHub</h3>
               <p className="text-muted-foreground text-sm">
                 Making wedding planning easy and accessible for everyone in Ethiopia
               </p>
@@ -263,7 +263,7 @@ export default function SearchPage() {
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 SergHub. All rights reserved.</p>
+            <p>&copy; 2025 BrideHub. All rights reserved.</p>
           </div>
         </div>
       </footer>
