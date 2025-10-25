@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "Connect with verified local event vendors in Ethiopia. Find makeup artists, caterers, photographers, decorators, venues, and entertainment for your perfect event.",
   keywords: [
-    "wedding planning",
+    "event planning",
     "Ethiopia",
     "vendors",
     "makeup artists",

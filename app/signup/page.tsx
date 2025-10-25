@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useAuth } from "@/lib/auth-context"
-import { Heart } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -48,11 +48,15 @@ export default function SignupPage() {
     <main className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <Heart className="w-6 h-6 text-primary-foreground" />
-          </div>
-          <span className="font-heading font-bold text-2xl text-foreground">SergHub</span>
+        <Link href="/" className="flex items-center justify-center mb-8">
+          <Image
+            src="/logoo2.png"
+            alt="SergHub Logo"
+            width={140}
+            height={36}
+            className="object-contain"
+            priority
+          />
         </Link>
 
         {/* Form Card */}

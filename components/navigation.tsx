@@ -10,6 +10,7 @@ import { ThemeToggle } from "./theme-toggle"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { user } = useAuth()
+  
 
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-border">
@@ -51,6 +52,8 @@ export function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
+           
+         
             <ThemeToggle />
             {user ? (
               <Link
