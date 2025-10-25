@@ -1,28 +1,41 @@
 "use client"
 
 import { VendorCard } from "@/components/vendor-card"
-import { 
-  Menu, X, Search, DollarSign, MapPin,
-  Palette, Shirt, UtensilsCrossed, Sparkles, 
-  Disc3, Hand, Camera, Mail, 
-  Building2, Music2, Scissors, Car
+import {
+  Building2,
+  Camera,
+  Car,
+  Disc3,
+  DollarSign,
+  Hand,
+  Mail,
+  MapPin,
+  Menu,
+  Music2,
+  Palette,
+  Scissors,
+  Search,
+  Shirt,
+  Sparkles,
+  UtensilsCrossed,
+  X
 } from "lucide-react"
 import * as React from "react"
 
-// Map of icon names to components
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Palette,
-  Shirt,
-  UtensilsCrossed,
-  Sparkles,
-  Disc3,
-  Hand,
-  Camera,
-  Mail,
-  Building2,
-  Music2,
-  Scissors,
-  Car,
+// Map category IDs to Lucide icon components
+const iconByCategoryId: Record<string, React.ComponentType<{ className?: string }>> = {
+  makeup: Palette,
+  "dress-renters": Shirt,
+  catering: UtensilsCrossed,
+  decoration: Sparkles,
+  dj: Disc3,
+  henna: Hand,
+  photography: Camera,
+  invitation: Mail,
+  venue: Building2,
+  music: Music2,
+  "hair-salons": Scissors,
+  "car-rental": Car,
 }
 
 type Category = {
@@ -47,6 +60,12 @@ export default function CategoriesSidebar({
   const [searchQuery, setSearchQuery] = React.useState("")
   const [priceRange, setPriceRange] = React.useState("all")
   const [location, setLocation] = React.useState("all")
+
+  // Lookup helpers for icons
+  const getIconForCategory = React.useCallback(
+    (id?: string) => (id ? iconByCategoryId[id] : undefined),
+    [],
+  )
 
   const activeCategory = React.useMemo(
     () => categories.find((c) => c.id === active) || categories[0],
@@ -155,7 +174,7 @@ export default function CategoriesSidebar({
               {categories.map((cat) => {
                 const count = vendors[cat.id]?.length ?? cat.count ?? 0
                 const isActive = active === cat.id
-                const IconComponent = cat.icon ? iconMap[cat.icon] : null
+                const IconComponent = getIconForCategory(cat.id)
                 
                 return (
                   <button
@@ -212,11 +231,12 @@ export default function CategoriesSidebar({
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-3">
-              {activeCategory?.icon && iconMap[activeCategory.icon] && (
-                React.createElement(iconMap[activeCategory.icon], { 
-                  className: "w-12 h-12 text-primary shrink-0"
-                })
-              )}
+              {(() => {
+                const HeaderIcon = getIconForCategory(activeCategory?.id)
+                return HeaderIcon ? (
+                  <HeaderIcon className="w-12 h-12 text-primary shrink-0" />
+                ) : null
+              })()}
               <div>
                 <h2 className="font-heading text-4xl font-bold text-foreground">
                   {activeCategory?.name || "Vendors"}
@@ -234,7 +254,7 @@ export default function CategoriesSidebar({
           <div className="bg-card border border-border rounded-xl p-6 mb-6 shadow-sm">
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-2">
-                <span className="text-2xl">🔍</span>
+                <Search className="w-5 h-5" />
                 Filter Vendors
               </h3>
               {hasActiveFilters && (
@@ -342,7 +362,7 @@ export default function CategoriesSidebar({
           {/* Vendors Grid */}
           {filteredVendors.length === 0 ? (
             <div className="bg-card border-2 border-dashed border-border rounded-xl p-16 text-center">
-              <div className="text-7xl mb-4">🔍</div>
+              <Search className="w-16 h-16 mb-4 text-primary" />
               <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
                 {hasActiveFilters ? "No matches found" : "No vendors yet"}
               </h3>
