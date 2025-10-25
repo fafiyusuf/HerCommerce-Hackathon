@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemeToggle } from "@/components/theme-toggle"
 import { useAuth } from "@/lib/auth-context"
 import {
   Box,
@@ -14,10 +15,10 @@ import {
   User,
   X
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading, logout } = useAuth()
@@ -103,15 +104,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       >
         <div className="flex flex-col h-full">
           {/* Logo Section */}
-          <Link href="/" className="p-6 border-b border-border bg-linear-to-r from-primary/10 to-secondary/10">
+          <Link href="/" className="p-1 border-b border-border bg-linear-to-r from-primary/10 to-secondary/10">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-linear-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shrink-0 shadow-lg">
-                <span className="text-primary-foreground font-heading font-bold text-xl">S</span>
-              </div>
-              <div>
-                <span className="font-heading font-bold text-xl text-foreground block">SergHub</span>
-                <span className="text-xs text-muted-foreground">Wedding Platform</span>
-              </div>
+              <Image
+                src="/logoo2.png"
+                alt="SergHub Logo"
+                width={100}
+                height={20}
+                className="object-contain"
+                priority
+              />
+              <span className="font-heading font-bold text-3xl text-pink-200 hidden sm:inline">ሰርግHub</span>
             </div>
           </Link>
 
@@ -176,7 +179,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Top Header Bar */}
         <header className="bg-card/80 backdrop-blur-lg border-b border-border sticky top-0 z-20 shadow-sm">
           <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div className="flex-1 lg:ml-0 ml-12">
+            <div className="flex-1 lg:ml-0 ml-12 flex items-center gap-3">
+              {/* Show small brand on mobile where sidebar is hidden */}
+              <div className="lg:hidden shrink-0">
+                <Image
+                  src="/logoo2.png"
+                  alt="SergHub Logo"
+                  width={110}
+                  height={28}
+                  className="object-contain"
+                  priority
+                />
+                <span className="font-heading font-bold text-4xl text-pink-200 hidden sm:inline ml-2 align-middle">ሰርግHub</span>
+              </div>
               <h1 className="text-xl lg:text-2xl font-heading font-bold text-foreground">
                 Welcome back, {user.name}!
               </h1>

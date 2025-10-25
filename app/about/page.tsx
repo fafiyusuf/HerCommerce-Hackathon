@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/navigation"
-import { Heart, Users, Target, CheckCircle2, Sparkles, Shield } from "lucide-react"
+import { CheckCircle2, Shield, Sparkles, Target, Users } from "lucide-react"
 import Image from "next/image"
 
 export default function AboutPage() {
@@ -46,7 +46,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-96 rounded-2xl bg-linear-to-br from-primary/20 to-secondary/20 flex items-center justify-center p-8">
               <Image 
-                src="/logoo.jpg" 
+                src="/logoo2.png" 
                 alt="SergHub - Seamless Event Planning" 
                 width={400} 
                 height={200}

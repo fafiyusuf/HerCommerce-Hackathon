@@ -1,11 +1,11 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
 import { FeaturedVendorCard } from "@/components/featured-vendor-card"
+import { Navigation } from "@/components/navigation"
 import { TestimonialCard } from "@/components/testimonial-card"
-import { Heart, Users, MapPin, Sparkles, ArrowRight, Languages } from "lucide-react"
 import { getFeaturedVendors } from "@/lib/data"
 import { testimonials } from "@/lib/testimonials"
+import { ArrowRight, Languages, MapPin, Sparkles, Users } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -41,7 +41,7 @@ export default function Home() {
             backgroundImage: 'url(/heroo.png)',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-pink-600/70 via-pink-400/40 to-transparent dark:from-black/80 dark:via-black/50 dark:to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-pink-600/70 via-pink-400/40 to-transparent dark:from-black/80 dark:via-black/50 dark:to-transparent"></div>
         </div>
         
         {/* Content */}
@@ -83,7 +83,7 @@ export default function Home() {
                 {/* Overlay - Pink for light mode, Dark pink for dark mode */}
                 
                 <Image
-                  src="/logoo.jpg"
+                  src="/logoo2.png"
                   alt="SergHub"
                   fill
                   className="object-cover"
