@@ -4,6 +4,7 @@ import { TestimonialCard } from "@/components/testimonial-card"
 import { Heart, Users, MapPin, Sparkles, ArrowRight } from "lucide-react"
 import { getFeaturedVendors } from "@/lib/data"
 import { testimonials } from "@/lib/testimonials"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Home() {
@@ -14,42 +15,110 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight text-balance">
-                Your Perfect Wedding Starts Here
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Connect with verified local vendors in Ethiopia to bring your dream wedding to life. From makeup artists
-                to caterers, photographers to decorators—find everything you need in one place.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link
-                  href="/search"
-                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-center"
-                >
-                  Explore Vendors
-                </Link>
-                <Link
-                  href="/signup?type=vendor"
-                  className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-secondary transition-colors text-center"
-                >
-                  For Vendors
-                </Link>
-              </div>
-            </div>
-            <div className="relative h-96 md:h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary to-muted rounded-2xl opacity-60"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Heart className="w-32 h-32 text-primary opacity-20" />
-              </div>
-            </div>
-          </div>
+     {/* Hero Section */}
+<section className="relative overflow-hidden">
+  {/* Background transparent image */}
+  <div className="absolute inset-0 -z-10 opacity-10">
+    <Image
+      src="/serghub-bg.png" // 👈 put your transparent background image here
+      alt="Background"
+      fill
+      className="object-cover object-center"
+    />
+  </div>
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Left Text Section */}
+      <div className="space-y-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight text-balance">
+          Your Perfect Wedding Starts Here
+        </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Connect with verified local vendors in Ethiopia to bring your dream wedding to life. From makeup artists
+          to caterers, photographers to decorators—find everything you need in one place.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <Link
+            href="/search"
+            className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-center"
+          >
+            Explore Vendors
+          </Link>
+          <Link
+            href="/signup?type=vendor"
+            className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-secondary transition-colors text-center"
+          >
+            For Vendors
+          </Link>
         </div>
-      </section>
+      </div>
+
+      {/* Right Image Section */}
+      <div className="relative h-96 md:h-full flex items-center justify-center">
+        <Image
+          alt="serghublogo"
+          src="/serghub.jpg"
+          width={500}
+          height={500}
+          className="rounded-2xl object-cover shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section className="relative overflow-hidden">
+  {/* Background transparent image */}
+  <div className="absolute ">
+    <Image
+      src="/sergbg.jpg" 
+      alt="Background"
+      fill
+      className="object-cover object-center"
+    />
+  </div>
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Left Text Section */}
+      <div className="space-y-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight text-balance">
+          Your Perfect Wedding Starts Here
+        </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Connect with verified local vendors in Ethiopia to bring your dream wedding to life. From makeup artists
+          to caterers, photographers to decorators—find everything you need in one place.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <Link
+            href="/search"
+            className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-center"
+          >
+            Explore Vendors
+          </Link>
+          <Link
+            href="/signup?type=vendor"
+            className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-secondary transition-colors text-center"
+          >
+            For Vendors
+          </Link>
+        </div>
+      </div>
+
+      {/* Right Image Section */}
+      <div className="relative h-96 md:h-full flex items-center justify-center">
+        <Image
+          alt="serghublogo"
+          src="/serghub.jpg"
+          width={500}
+          height={500}
+          className="rounded-2xl object-cover shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Features Section */}
       <section className="bg-secondary py-16 md:py-24">
