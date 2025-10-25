@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 export interface User {
   id: string
@@ -12,6 +12,9 @@ export interface User {
     businessName: string
     category: string
     phone: string
+    governmentId?: string
+    licenses?: string[]
+    verificationStatus?: "pending" | "verified" | "rejected"
   }
 }
 
@@ -19,7 +22,13 @@ interface AuthContextType {
   user: User | null
   isLoading: boolean
   login: (email: string, password: string) => Promise<void>
-  signup: (email: string, password: string, name: string, userType: "couple" | "vendor") => Promise<void>
+  signup: (
+    email: string,
+    password: string,
+    name: string,
+    userType: "couple" | "vendor",
+    vendorVerification?: { governmentId: string; licenses: string[] }
+  ) => Promise<void>
   logout: () => void
 }
 
@@ -70,7 +79,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const signup = async (email: string, password: string, name: string, userType: "couple" | "vendor") => {
+  const signup = async (
+    email: string,
+    password: string,
+    name: string,
+    userType: "couple" | "vendor",
+    vendorVerification?: { governmentId: string; licenses: string[] },
+  ) => {
     setIsLoading(true)
     try {
       // Mock signup - in production, this would call an API
@@ -86,6 +101,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                   businessName: "",
                   category: "",
                   phone: "",
+                  governmentId: vendorVerification?.governmentId || "",
+                  licenses: vendorVerification?.licenses || [],
+                  verificationStatus: "pending",
                 }
               : undefined,
         }

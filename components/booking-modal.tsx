@@ -35,7 +35,17 @@ export function BookingModal({ vendorId, vendorName, onClose, onSuccess }: Booki
     setIsLoading(true)
 
     try {
-      createBooking(vendorId, user.id, user.name, eventDate, eventType, Number.parseInt(guestCount), budget, notes)
+      createBooking(
+        vendorId,
+        vendorName,
+        user.id,
+        user.name,
+        eventDate,
+        eventType,
+        parseInt(guestCount),
+        budget,
+        notes,
+      )
       if (addToMyCollection && vendor) {
         addToCollection(user.id, vendorId, vendor.name, vendor.category || "unknown", service || undefined)
       }
@@ -49,8 +59,8 @@ export function BookingModal({ vendorId, vendorName, onClose, onSuccess }: Booki
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-card rounded-xl max-w-md w-full border border-border">
+    <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50 p-4">
+      <div className="rounded-xl max-w-md w-full border border-border bg-card shadow-xl">
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-2xl font-heading font-bold text-foreground">Book {vendorName}</h2>
           <button onClick={onClose} className="p-1 hover:bg-secondary rounded-lg transition-colors">

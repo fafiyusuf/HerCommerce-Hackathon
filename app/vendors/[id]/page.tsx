@@ -2,8 +2,9 @@
 
 import { BookingModal } from "@/components/booking-modal"
 import { Navigation } from "@/components/navigation"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useAuth } from "@/lib/auth-context"
-import { addToCollection, getVendorInventory, vendors } from "@/lib/data"
+import { addToCollection, addVendorReview, getVendorInventory, vendors } from "@/lib/data"
 import { Check, Mail, MapPin, Phone, Star } from "lucide-react"
 import { notFound } from "next/navigation"
 import { useState } from "react"
@@ -21,6 +22,10 @@ export default function VendorPage({ params }: VendorPageProps) {
   const { user } = useAuth()
   const [showBookingModal, setShowBookingModal] = useState(false)
   const [bookingSuccess, setBookingSuccess] = useState(false)
+  const [showReviewModal, setShowReviewModal] = useState(false)
+  const [selectedService, setSelectedService] = useState<string | undefined>(undefined)
+  const [rating, setRating] = useState<number>(5)
+  const [comment, setComment] = useState<string>("")
 
   if (!vendor) {
     notFound()
@@ -42,7 +47,7 @@ export default function VendorPage({ params }: VendorPageProps) {
       {/* Hero Section with Image */}
       <section className="relative h-96 bg-muted overflow-hidden">
         <img src={vendor.image || "/placeholder.svg"} alt={vendor.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+  <div className="absolute inset-0 bg-linear-to-t from-background to-transparent"></div>
       </section>
 
       {/* Vendor Info Section */}
@@ -136,7 +141,26 @@ export default function VendorPage({ params }: VendorPageProps) {
                   <Check className="w-5 h-5 text-primary shrink-0" />
                   <span className="text-foreground">{service}</span>
                 </div>
-                <div>
+                <div className="flex items-center gap-2">
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        if (user.userType !== "couple") {
+                          alert("Only couples/event organizers can write reviews")
+                          return
+                        }
+                        setSelectedService(service)
+                        setShowReviewModal(true)
+                      }}
+                      className="px-3 py-2 bg-primary text-primary-foreground rounded-lg"
+                    >
+                      Review
+                    </button>
+                  ) : (
+                    <a href="/login" className="px-3 py-2 bg-primary text-primary-foreground rounded-lg">
+                      Sign in to review
+                    </a>
+                  )}
                   {user ? (
                     <button
                       onClick={() => {
@@ -269,6 +293,75 @@ export default function VendorPage({ params }: VendorPageProps) {
           onSuccess={handleBookingSuccess}
         />
       )}
+
+      {/* Review Modal */}
+      <Dialog open={showReviewModal} onOpenChange={setShowReviewModal}>
+        <DialogContent className="bg-card border-border">
+          <DialogHeader>
+            <DialogTitle>Review {selectedService ? `- ${selectedService}` : vendor.name}</DialogTitle>
+          </DialogHeader>
+          {user ? (
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (user.userType !== "couple") {
+                  alert("Only couples/event organizers can write reviews")
+                  return
+                }
+                addVendorReview(vendor.id, selectedService, user.id, user.name, rating, comment || undefined)
+                setShowReviewModal(false)
+                setRating(5)
+                setComment("")
+                alert("Thanks for your review!")
+              }}
+            >
+              <div>
+                <label className="block text-sm text-muted-foreground mb-1">Rating</label>
+                <select
+                  value={rating}
+                  onChange={(e) => setRating(Number(e.target.value))}
+                  className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground"
+                >
+                  {[5, 4, 3, 2, 1].map((r) => (
+                    <option key={r} value={r}>
+                      {r} Star{r > 1 ? "s" : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm text-muted-foreground mb-1">Comment (optional)</label>
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  rows={4}
+                  className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground"
+                  placeholder="Share a few words about your experience"
+                />
+              </div>
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowReviewModal(false)}
+                  className="px-4 py-2 bg-secondary rounded-md"
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="px-4 py-2 bg-primary text-primary-foreground rounded-md">
+                  Submit Review
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="py-4">
+              <a href="/login" className="px-4 py-2 bg-primary text-primary-foreground rounded-md">
+                Sign in to review
+              </a>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Footer */}
       <footer className="bg-muted border-t border-border py-12 mt-16">

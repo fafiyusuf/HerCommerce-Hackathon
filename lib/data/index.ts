@@ -2,47 +2,32 @@
 
 // Export all types
 export type {
-  VendorInventoryItem,
-  VendorService,
-  Vendor,
-  Category,
-  Booking,
-  Favorite,
-  CollectionItem,
+    Booking, Category, CollectionItem, Favorite, Review, Vendor, VendorInventoryItem,
+    VendorService
 } from "./types"
 
 // Export categories
 export { categories } from "./categories"
 
 // Import all vendor arrays
-import { makeupVendors } from "./makeup"
+import { carRentalVendors } from "./car-rental"
 import { cateringVendors } from "./catering"
-import { photographyVendors } from "./photography"
 import { decorationVendors } from "./decoration"
-import { venueVendors } from "./venue"
-import { musicVendors } from "./music"
-import { dressRentersVendors } from "./dress-renters"
 import { djVendors } from "./dj"
+import { dressRentersVendors } from "./dress-renters"
+import { hairSalonsVendors } from "./hair-salons"
 import { hennaVendors } from "./henna"
 import { invitationVendors } from "./invitation"
-import { hairSalonsVendors } from "./hair-salons"
-import { carRentalVendors } from "./car-rental"
+import { makeupVendors } from "./makeup"
+import { musicVendors } from "./music"
+import { photographyVendors } from "./photography"
 import type { Vendor } from "./types"
+import { venueVendors } from "./venue"
 
 // Export individual vendor arrays
 export {
-  makeupVendors,
-  cateringVendors,
-  photographyVendors,
-  decorationVendors,
-  venueVendors,
-  musicVendors,
-  dressRentersVendors,
-  djVendors,
-  hennaVendors,
-  invitationVendors,
-  hairSalonsVendors,
-  carRentalVendors,
+    carRentalVendors, cateringVendors, decorationVendors, djVendors, dressRentersVendors, hairSalonsVendors, hennaVendors,
+    invitationVendors, makeupVendors, musicVendors, photographyVendors, venueVendors
 }
 
 // Aggregate all vendors into a single vendors object (maintains backward compatibility)
@@ -63,23 +48,8 @@ export const vendors: Record<string, Vendor[]> = {
 
 // Export all utility functions except the ones we're overriding
 export {
-  getVendorInventory,
-  addInventoryItem,
-  removeInventoryItem,
-  getVendorServices,
-  addVendorService,
-  removeVendorService,
-  bookings,
-  createBooking,
-  getUserBookings,
-  getUserFavorites,
-  isFavorite,
-  toggleFavorite,
-  addToCollection,
-  getUserCollection,
-  removeCollectionItem,
-  searchVendors,
-  filterVendors,
+    addInventoryItem, addToCollection, addVendorReview, addVendorService, bookings,
+    createBooking, filterVendors, getUserBookings, getUserCollection, getUserFavorites, getVendorInventory, getVendorReviews, getVendorServices, isFavorite, removeCollectionItem, removeInventoryItem, removeVendorService, searchVendors, toggleFavorite
 } from "./utils"
 
 // Helper function to get vendor by ID (searches across all categories)
@@ -96,7 +66,7 @@ export function getFeaturedVendors(): Vendor[] {
 
 // Re-export utility functions with the same names
 export {
-  searchVendors as searchVendorsUtil,
-  filterVendors as filterVendorsUtil,
-  getFeaturedVendors as getFeaturedVendorsUtil,
+    filterVendors as filterVendorsUtil,
+    getFeaturedVendors as getFeaturedVendorsUtil, searchVendors as searchVendorsUtil
 } from "./utils"
+
