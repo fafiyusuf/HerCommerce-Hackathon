@@ -6,8 +6,9 @@ import { TestimonialCard } from "@/components/testimonial-card"
 import { Heart, Users, MapPin, Sparkles, ArrowRight, Languages } from "lucide-react"
 import { getFeaturedVendors } from "@/lib/data"
 import { testimonials } from "@/lib/testimonials"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
+
 import { useState } from "react"
 
 export default function Home() {
@@ -80,12 +81,12 @@ export default function Home() {
             <div className="relative h-96 md:h-full hidden md:block">
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border-2 border-white/20 dark:bg-black/20 dark:border-white/10 overflow-hidden">
                 {/* Overlay - Pink for light mode, Dark pink for dark mode */}
-                <div className="absolute inset-0 bg-pink-400/60 dark:bg-pink-600/70 z-10"></div>
+                
                 <Image
                   src="/logoo.jpg"
                   alt="SergHub"
                   fill
-                  className="object-contain p-8"
+                  className="object-cover"
                   priority
                 />
               </div>
@@ -93,6 +94,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Features Section */}
       <section className="bg-secondary py-16 md:py-24">
