@@ -1,7 +1,8 @@
 "use client"
 
 import { useAuth } from "@/lib/auth-context"
-import { Menu, User, X } from "lucide-react"
+
+import { Menu, User, X, Languages } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
@@ -10,6 +11,7 @@ import { ThemeToggle } from "./theme-toggle"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { user } = useAuth()
+  
 
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-border">
@@ -51,6 +53,8 @@ export function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
+           
+         
             <ThemeToggle />
             {user ? (
               <Link

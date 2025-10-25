@@ -1,50 +1,93 @@
+"use client"
+
 import { Navigation } from "@/components/navigation"
 import { FeaturedVendorCard } from "@/components/featured-vendor-card"
 import { TestimonialCard } from "@/components/testimonial-card"
-import { Heart, Users, MapPin, Sparkles, ArrowRight } from "lucide-react"
+import { Heart, Users, MapPin, Sparkles, ArrowRight, Languages } from "lucide-react"
 import { getFeaturedVendors } from "@/lib/data"
 import { testimonials } from "@/lib/testimonials"
 import Link from "next/link"
+import Image from "next/image"
+import { useState } from "react"
 
 export default function Home() {
   const featuredVendors = getFeaturedVendors()
   const displayTestimonials = testimonials.slice(0, 3)
+  const [language, setLanguage] = useState<"en" | "am">("en")
+
+
+  const heroContent = {
+    en: {
+      title: "Your Perfect Event Starts Here",
+      description: "From ሰርግ (Wedding) • ብሪዳል (Bridal) • ሽመግልና (Engagement) • ቁስላ • የገነንየ • ቸግ (Henna Night) • Baby Shower • Gender Reveal • መልስ • ቅልቅል  • እደር  and more — find everything you need in one place!"
+    },
+    am: {
+      title: "የእርስዎ ምርጥ ዝግጅት እዚህ ይጀምራል",
+      description: "ለሰርግ • ለብሪዳል • ለሽመግልና • ለቁስላ የገነንየ ጨጊ • ለቤቢሻወር • ለጀንደር ሪቬል • ለመልስ ቀልቀል • ለእደር እና ሌሎችም — የሚፈልጉትን ሁሉ በአንድ ቦታ ያግኙ!"
+    }
+  }
 
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      <section className="relative overflow-hidden min-h-[600px] md:min-h-[700px]">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/heroo.png)',
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-pink-600/70 via-pink-400/40 to-transparent dark:from-black/80 dark:via-black/50 dark:to-transparent"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight text-balance">
-                Your Perfect Wedding Starts Here
+              {/* Language Toggle */}
+              <button
+                onClick={() => setLanguage(language === "en" ? "am" : "en")}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm border-2 border-white/40 text-white rounded-lg font-semibold hover:bg-white/30 transition-colors shadow-lg"
+              >
+                <Languages className="w-5 h-5" />
+                {language === "en" ? "አማርኛ" : "English"}
+              </button>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-black dark:text-white leading-tight text-balance drop-shadow-lg">
+                {heroContent[language].title}
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Connect with verified local vendors in Ethiopia to bring your dream wedding to life. From makeup artists
-                to caterers, photographers to decorators—find everything you need in one place.
+              <p className="text-lg text-black/90 dark:text-white/95 leading-relaxed drop-shadow-md font-medium">
+                {heroContent[language].description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link
                   href="/search"
-                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-center"
+                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-opacity-90 transition-colors text-center shadow-lg"
                 >
                   Explore Vendors
                 </Link>
                 <Link
                   href="/signup?type=vendor"
-                  className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-secondary transition-colors text-center"
+                  className="px-8 py-3 bg-white/90 text-foreground border-2 border-white rounded-lg font-semibold hover:bg-white transition-colors text-center shadow-lg"
                 >
                   For Vendors
                 </Link>
               </div>
             </div>
-            <div className="relative h-96 md:h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary to-muted rounded-2xl opacity-60"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Heart className="w-32 h-32 text-primary opacity-20" />
+            <div className="relative h-96 md:h-full hidden md:block">
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border-2 border-white/20 dark:bg-black/20 dark:border-white/10 overflow-hidden">
+                {/* Overlay - Pink for light mode, Dark pink for dark mode */}
+                <div className="absolute inset-0 bg-pink-400/60 dark:bg-pink-600/70 z-10"></div>
+                <Image
+                  src="/logoo.jpg"
+                  alt="SergHub"
+                  fill
+                  className="object-contain p-8"
+                  priority
+                />
               </div>
             </div>
           </div>
