@@ -1,8 +1,29 @@
 "use client"
 
 import { VendorCard } from "@/components/vendor-card"
-import { Menu, X, Search, DollarSign, MapPin } from "lucide-react"
+import { 
+  Menu, X, Search, DollarSign, MapPin,
+  Palette, Shirt, UtensilsCrossed, Sparkles, 
+  Disc3, Hand, Camera, Mail, 
+  Building2, Music2, Scissors, Car
+} from "lucide-react"
 import * as React from "react"
+
+// Map of icon names to components
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Palette,
+  Shirt,
+  UtensilsCrossed,
+  Sparkles,
+  Disc3,
+  Hand,
+  Camera,
+  Mail,
+  Building2,
+  Music2,
+  Scissors,
+  Car,
+}
 
 type Category = {
   id: string
@@ -134,6 +155,7 @@ export default function CategoriesSidebar({
               {categories.map((cat) => {
                 const count = vendors[cat.id]?.length ?? cat.count ?? 0
                 const isActive = active === cat.id
+                const IconComponent = cat.icon ? iconMap[cat.icon] : null
                 
                 return (
                   <button
@@ -149,8 +171,8 @@ export default function CategoriesSidebar({
                       }
                     `}
                   >
-                    {cat.icon && (
-                      <span className="text-4xl shrink-0">{cat.icon}</span>
+                    {IconComponent && (
+                      <IconComponent className={`w-6 h-6 shrink-0 ${isActive ? 'text-primary-foreground' : 'text-primary'}`} />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-base truncate">{cat.name}</div>
@@ -190,8 +212,10 @@ export default function CategoriesSidebar({
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-3">
-              {activeCategory?.icon && (
-                <span className="text-5xl">{activeCategory.icon}</span>
+              {activeCategory?.icon && iconMap[activeCategory.icon] && (
+                React.createElement(iconMap[activeCategory.icon], { 
+                  className: "w-12 h-12 text-primary shrink-0"
+                })
               )}
               <div>
                 <h2 className="font-heading text-4xl font-bold text-foreground">
