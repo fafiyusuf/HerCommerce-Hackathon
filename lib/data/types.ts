@@ -82,3 +82,15 @@ export interface CollectionItem {
   notes?: string
   createdAt: string
 }
+
+// Reviews left by users for vendors/services
+export interface Review {
+  id: string
+  vendorId: number
+  serviceTitle?: string
+  userId: string
+  userName: string
+  rating: number
+  comment?: string
+  createdAt: string
+}

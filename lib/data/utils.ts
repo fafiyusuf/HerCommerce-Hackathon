@@ -1,10 +1,11 @@
 import type {
-  VendorInventoryItem,
-  VendorService,
-  Booking,
-  Favorite,
-  CollectionItem,
-  Vendor,
+    Booking,
+    CollectionItem,
+    Favorite,
+    Review,
+    Vendor,
+    VendorInventoryItem,
+    VendorService,
 } from "./types"
 
 // Inventory management functions
@@ -313,4 +314,42 @@ export function getVendorById(allVendors: Vendor[], vendorId: number): Vendor | 
 
 export function getFeaturedVendors(allVendors: Vendor[]): Vendor[] {
   return allVendors.filter((vendor) => vendor.featured).slice(0, 3)
+}
+
+// Reviews management
+export function getVendorReviews(vendorId: number): Review[] {
+  const key = `serghub_reviews_${vendorId}`
+  const stored = localStorage.getItem(key)
+  if (!stored) return []
+  try {
+    return JSON.parse(stored)
+  } catch (e) {
+    console.error("Failed to parse vendor reviews:", e)
+    return []
+  }
+}
+
+export function addVendorReview(
+  vendorId: number,
+  serviceTitle: string | undefined,
+  userId: string,
+  userName: string,
+  rating: number,
+  comment?: string,
+): Review {
+  const key = `serghub_reviews_${vendorId}`
+  const existing = getVendorReviews(vendorId)
+  const review: Review = {
+    id: Math.random().toString(36).substr(2, 9),
+    vendorId,
+    serviceTitle,
+    userId,
+    userName,
+    rating: Math.max(1, Math.min(5, Math.round(rating))),
+    comment,
+    createdAt: new Date().toISOString(),
+  }
+  existing.push(review)
+  localStorage.setItem(key, JSON.stringify(existing))
+  return review
 }

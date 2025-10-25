@@ -2,17 +2,19 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
 import { Heart } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function SignupPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
   const [userType, setUserType] = useState<"couple" | "vendor">("couple")
+  const [vendorGovernmentId, setVendorGovernmentId] = useState("")
+  const [vendorLicenses, setVendorLicenses] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { signup } = useAuth()
@@ -24,7 +26,16 @@ export default function SignupPage() {
     setIsLoading(true)
 
     try {
-      await signup(email, password, name, userType)
+      const vendorVerification =
+        userType === "vendor"
+          ? { governmentId: vendorGovernmentId.trim(), licenses: vendorLicenses.split(",").map((s) => s.trim()).filter(Boolean) }
+          : undefined
+      if (userType === "vendor") {
+        if (!vendorGovernmentId.trim() || !vendorLicenses.trim()) {
+          throw new Error("Vendor ID and licenses are required for verification")
+        }
+      }
+      await signup(email, password, name, userType, vendorVerification)
       router.push("/dashboard")
     } catch (err) {
       setError(err instanceof Error ? err.message : "Signup failed")
@@ -126,6 +137,46 @@ export default function SignupPage() {
                 </label>
               </div>
             </div>
+
+            {userType === "vendor" && (
+              <div className="space-y-4 border-t border-border pt-4">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-foreground">Vendor Verification</h2>
+                  <span className="text-xs text-muted-foreground">Required</span>
+                </div>
+                <div>
+                  <label htmlFor="vendorId" className="block text-sm font-semibold text-foreground mb-2">
+                    Government ID Number
+                  </label>
+                  <input
+                    id="vendorId"
+                    type="text"
+                    value={vendorGovernmentId}
+                    onChange={(e) => setVendorGovernmentId(e.target.value)}
+                    placeholder="e.g., 0123-456789"
+                    className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    required={userType === "vendor"}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="licenses" className="block text-sm font-semibold text-foreground mb-2">
+                    Business License Numbers (comma separated)
+                  </label>
+                  <input
+                    id="licenses"
+                    type="text"
+                    value={vendorLicenses}
+                    onChange={(e) => setVendorLicenses(e.target.value)}
+                    placeholder="e.g., LIC-1234, LIC-5678"
+                    className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    required={userType === "vendor"}
+                  />
+                  <p className="text-xs text-muted-foreground mt-2">
+                    We use these for verification. You can upload documents later in your dashboard if needed.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <button
               type="submit"

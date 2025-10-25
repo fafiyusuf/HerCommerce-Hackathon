@@ -15,7 +15,19 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+            {/* If /logo.png exists it will be shown, otherwise fallback to the pill */}
+            <img
+              src="/logo.png"
+              alt="SergHub Logo"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement
+                target.style.display = 'none'
+                const fallback = target.nextElementSibling as HTMLElement
+                if (fallback) fallback.style.display = 'flex'
+              }}
+              className="w-9 h-9 object-contain mix-blend-multiply"
+            />
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center hidden">
               <span className="text-primary-foreground font-heading font-bold text-lg">B</span>
             </div>
             <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">SergHub</span>
