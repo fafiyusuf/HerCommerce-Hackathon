@@ -2,8 +2,8 @@
 
 import { useAuth } from "@/lib/auth-context"
 import { Menu, User, X } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { ThemeToggle } from "./theme-toggle"
 
@@ -25,7 +25,7 @@ export function Navigation() {
               className="object-contain"
               priority
             />
-            <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">ሰርግHub</span>
+            <span className="font-heading font-bold text-4xl text-pink-200 hidden sm:inline">ሰርግHub</span>
           </Link>
 
           {/* Desktop Navigation */}

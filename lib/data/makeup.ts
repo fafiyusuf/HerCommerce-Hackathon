@@ -198,7 +198,7 @@ export const makeupVendors: Vendor[] = [
     rating: 4.9,
     reviews: 127,
     price: "$50-150",
-    image: "https://images.unsplash.com/photo-1560869713-7d0b29837912?w=500&h=300&fit=crop&crop=center",
+    image: "/makeup-artist-studio.jpg",
     description: "Professional Ethiopian bridal makeup with traditional and modern styles",
     location: "Addis Ababa",
     featured: true,
