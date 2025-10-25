@@ -15,9 +15,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "SergHub - Wedding Planning Made Easy in Ethiopia",
+  title: "SergHub - Event Planning Made Easy in Ethiopia",
   description:
-    "Connect with verified local wedding vendors in Ethiopia. Find makeup artists, caterers, photographers, decorators, venues, and entertainment for your perfect wedding.",
+    "Connect with verified local event vendors in Ethiopia. Find makeup artists, caterers, photographers, decorators, venues, and entertainment for your perfect event.",
   keywords: [
     "wedding planning",
     "Ethiopia",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://serghub.vercel.app",
   siteName: "SergHub",
-  title: "SergHub - Wedding Planning Made Easy in Ethiopia",
+  title: "SergHub - Event Planning Made Easy in Ethiopia",
     description:
       "Connect with verified local wedding vendors in Ethiopia. Find everything you need for your perfect wedding.",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "https://serghub.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
-  alt: "SergHub - Wedding Planning Platform",
+  alt: "SergHub - Event Planning Platform",
       },
     ],
   },
@@ -87,8 +87,8 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/logoo2.png" />
+        <link rel="apple-touch-icon" href="/logoo2.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#d4a5a5" />
       </head>

@@ -3,7 +3,9 @@
 import { useAuth } from "@/lib/auth-context"
 import { Menu, User, X } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
+import { ThemeToggle } from "./theme-toggle"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,11 +16,16 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-primary-foreground font-heading font-bold text-lg">B</span>
-            </div>
-            <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">SergHub</span>
+          <Link href="/" className="flex items-center">
+            <Image 
+              src="/logoo2.png" 
+              alt="SergHub Logo" 
+              width={110} 
+              height={30}
+              className="object-contain"
+              priority
+            />
+            <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">ሰርግHub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,10 +42,16 @@ export function Navigation() {
             <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About
             </Link>
+            {user?.userType === "vendor" && (
+              <Link href="/plans" className="text-foreground hover:text-primary transition-colors">
+                Plans
+              </Link>
+            )}
           </div>
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             {user ? (
               <Link
                 href="/dashboard"
@@ -63,9 +76,12 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 text-foreground" aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground" aria-label="Toggle menu">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -99,6 +115,15 @@ export function Navigation() {
             >
               About
             </Link>
+            {user?.userType === "vendor" && (
+              <Link
+                href="/plans"
+                className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Plans
+              </Link>
+            )}
             <div className="flex gap-2 pt-2">
               {user ? (
                 <Link

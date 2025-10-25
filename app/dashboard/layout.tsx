@@ -6,6 +6,7 @@ import {
   Briefcase,
   Calendar,
   ChevronDown,
+  Crown,
   Heart,
   Home,
   LogOut,
@@ -16,6 +17,7 @@ import {
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading, logout } = useAuth()
@@ -59,6 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (user.userType === "vendor") {
     navItems.splice(3, 0, { href: "/dashboard/services", icon: Briefcase, label: "My Services" })
+    navItems.splice(4, 0, { href: "/dashboard/plans", icon: Crown, label: "Plans & Pricing" })
   }
 
   if (user.userType === "couple") {
@@ -185,11 +188,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
 
             {/* Quick User Menu */}
-            <div className="relative">
-              <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center gap-2 px-3 py-2 bg-secondary/50 hover:bg-secondary rounded-lg transition-colors border border-border"
-              >
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 px-3 py-2 bg-secondary/50 hover:bg-secondary rounded-lg transition-colors border border-border"
+                >
                 <div className="w-8 h-8 bg-linear-to-br from-primary to-secondary rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-primary-foreground" />
                 </div>
@@ -235,6 +240,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   </div>
                 </>
               )}
+              </div>
             </div>
           </div>
         </header>
