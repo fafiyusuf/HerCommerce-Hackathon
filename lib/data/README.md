@@ -1,4 +1,4 @@
-# BrideHub Data Architecture
+# SergHub Data Architecture
 
 ## Overview
 The vendor data has been decoupled from a single large file into an organized modular structure for better maintainability and scalability.
@@ -23,6 +23,8 @@ lib/
     ├── dj.ts                 # DJ vendors (2 vendors)
     ├── henna.ts              # Henna artists vendors (2 vendors)
     └── invitation.ts         # Invitation vendors (2 vendors)
+  ├── hair-salons.ts       # Hair salons (male & female) vendors (2+ vendors)
+  └── car-rental.ts        # Car rental services (limo, jeep) vendors (2+ vendors)
 ```
 
 ## Files Description
@@ -126,8 +128,8 @@ To add a new category:
 
 ## Migration Notes
 
-- Original file: `lib/data.ts` (~1351 lines) 
-- New structure: 13 organized files averaging ~150 lines each
-- Zero breaking changes
-- All existing imports work as before
-- All functionality preserved
+// Original file: `lib/data.ts` (~1351 lines) 
+// New structure: 13 organized files averaging ~150 lines each
+// Zero breaking changes
+// All existing imports work as before
+// All functionality preserved

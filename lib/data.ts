@@ -1,5 +1,5 @@
 /**
- * BrideHub Vendor Data Management
+ * SergHub Vendor Data Management
  * 
  * This file serves as the main entry point for all vendor data.
  * Data has been decoupled into organized modules for better maintainability.

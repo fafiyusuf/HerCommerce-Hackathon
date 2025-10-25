@@ -25,6 +25,8 @@ import { dressRentersVendors } from "./dress-renters"
 import { djVendors } from "./dj"
 import { hennaVendors } from "./henna"
 import { invitationVendors } from "./invitation"
+import { hairSalonsVendors } from "./hair-salons"
+import { carRentalVendors } from "./car-rental"
 import type { Vendor } from "./types"
 
 // Export individual vendor arrays
@@ -39,6 +41,8 @@ export {
   djVendors,
   hennaVendors,
   invitationVendors,
+  hairSalonsVendors,
+  carRentalVendors,
 }
 
 // Aggregate all vendors into a single vendors object (maintains backward compatibility)
@@ -53,6 +57,8 @@ export const vendors: Record<string, Vendor[]> = {
   dj: djVendors,
   henna: hennaVendors,
   invitation: invitationVendors,
+  "hair-salons": hairSalonsVendors,
+  "car-rental": carRentalVendors,
 }
 
 // Export all utility functions except the ones we're overriding

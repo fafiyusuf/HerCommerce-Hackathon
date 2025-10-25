@@ -11,4 +11,6 @@ export const categories: Category[] = [
   { id: "invitation", name: "Invitation Card Makers", description: "Design and print beautiful invitations", icon: "✉️", count: 8 },
   { id: "venue", name: "Hotels & Venues", description: "Perfect spaces and accommodation for your celebration", icon: "🏛️", count: 15 },
   { id: "music", name: "Music & Entertainment", description: "Keep your guests entertained", icon: "🎵", count: 19 },
+  { id: "hair-salons", name: "Hair Salons", description: "Hair styling services for brides, grooms and guests (male & female)", icon: "💇‍♀️", count: 8 },
+  { id: "car-rental", name: "Car Rental Services", description: "Limo, jeep and chauffeur services for weddings and events", icon: "🚗", count: 6 },
 ]

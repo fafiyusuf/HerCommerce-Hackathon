@@ -18,7 +18,7 @@ export function Navigation() {
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <span className="text-primary-foreground font-heading font-bold text-lg">B</span>
             </div>
-            <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">BrideHub</span>
+            <span className="font-heading font-bold text-xl text-foreground hidden sm:inline">SergHub</span>
           </Link>
 
           {/* Desktop Navigation */}

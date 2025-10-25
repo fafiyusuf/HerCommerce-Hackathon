@@ -1,4 +1,4 @@
-// Type definitions for BrideHub vendor management
+// Type definitions for SergHub vendor management
 
 export interface VendorInventoryItem {
   id: string

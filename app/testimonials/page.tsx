@@ -20,7 +20,7 @@ export default function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Success Stories</h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Hear from couples and vendors who have made their wedding dreams come true with BrideHub
+            Hear from couples and vendors who have made their wedding dreams come true with SergHub
           </p>
         </div>
       </section>
@@ -31,7 +31,7 @@ export default function TestimonialsPage() {
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">From Our Couples</h2>
             <p className="text-lg text-muted-foreground">
-              Discover how couples have used BrideHub to plan their perfect weddings
+              Discover how couples have used SergHub to plan their perfect weddings
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -48,7 +48,7 @@ export default function TestimonialsPage() {
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">From Our Vendors</h2>
             <p className="text-lg text-muted-foreground">
-              Learn how vendors are growing their businesses through BrideHub
+              Learn how vendors are growing their businesses through SergHub
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -88,7 +88,7 @@ export default function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-heading font-semibold text-foreground mb-4">BrideHub</h3>
+              <h3 className="font-heading font-semibold text-foreground mb-4">SergHub</h3>
               <p className="text-muted-foreground text-sm">
                 Making wedding planning easy and accessible for everyone in Ethiopia
               </p>
@@ -155,7 +155,7 @@ export default function TestimonialsPage() {
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 BrideHub. All rights reserved.</p>
+            <p>&copy; 2025 SergHub. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -49,7 +49,7 @@ export default function DashboardPage() {
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shrink-0">
               <span className="text-primary-foreground font-heading font-bold text-lg">B</span>
             </div>
-            <span className="font-heading font-bold text-xl text-foreground hidden lg:inline">BrideHub</span>
+            <span className="font-heading font-bold text-xl text-foreground hidden lg:inline">SergHub</span>
           </div>
         </Link>
 

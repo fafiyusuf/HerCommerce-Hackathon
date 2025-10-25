@@ -65,7 +65,7 @@ export const useVendorStore = create<VendorStore>()(
       }
     }),
     {
-      name: 'bridehub-vendor-storage',
+  name: 'serghub-vendor-storage',
       storage: createJSONStorage(() => localStorage),
     }
   )
