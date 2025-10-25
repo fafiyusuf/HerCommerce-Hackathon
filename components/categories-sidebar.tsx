@@ -2,26 +2,41 @@
 
 import { VendorCard } from "@/components/vendor-card"
 import {
-    Box,
-    Building2,
-    Camera,
-    Car,
-    DollarSign,
-    Hand,
-    Headphones,
-    Mail,
-    MapPin,
-    Menu,
-    Music,
-    Palette,
-    Scissors,
-    Search,
-    Shirt,
-    Sparkles,
-    Utensils,
-    X,
+  Building2,
+  Camera,
+  Car,
+  Disc3,
+  DollarSign,
+  Hand,
+  Mail,
+  MapPin,
+  Menu,
+  Music2,
+  Palette,
+  Scissors,
+  Search,
+  Shirt,
+  Sparkles,
+  UtensilsCrossed,
+  X
 } from "lucide-react"
 import * as React from "react"
+
+// Map category IDs to Lucide icon components
+const iconByCategoryId: Record<string, React.ComponentType<{ className?: string }>> = {
+  makeup: Palette,
+  "dress-renters": Shirt,
+  catering: UtensilsCrossed,
+  decoration: Sparkles,
+  dj: Disc3,
+  henna: Hand,
+  photography: Camera,
+  invitation: Mail,
+  venue: Building2,
+  music: Music2,
+  "hair-salons": Scissors,
+  "car-rental": Car,
+}
 
 type Category = {
   id: string
@@ -46,22 +61,9 @@ export default function CategoriesSidebar({
   const [priceRange, setPriceRange] = React.useState("all")
   const [location, setLocation] = React.useState("all")
 
-  // Map category IDs to Lucide icons
-  const categoryIconMap: Record<string, React.ReactNode> = React.useMemo(
-    () => ({
-      makeup: <Palette className="w-6 h-6 text-primary" />,
-      "dress-renters": <Shirt className="w-6 h-6 text-primary" />,
-      catering: <Utensils className="w-6 h-6 text-primary" />,
-      decoration: <Sparkles className="w-6 h-6 text-primary" />,
-      dj: <Headphones className="w-6 h-6 text-primary" />,
-      henna: <Hand className="w-6 h-6 text-primary" />,
-      photography: <Camera className="w-6 h-6 text-primary" />,
-      invitation: <Mail className="w-6 h-6 text-primary" />,
-      venue: <Building2 className="w-6 h-6 text-primary" />,
-      music: <Music className="w-6 h-6 text-primary" />,
-      "hair-salons": <Scissors className="w-6 h-6 text-primary" />,
-      "car-rental": <Car className="w-6 h-6 text-primary" />,
-    }),
+  // Lookup helpers for icons
+  const getIconForCategory = React.useCallback(
+    (id?: string) => (id ? iconByCategoryId[id] : undefined),
     [],
   )
 
@@ -172,6 +174,7 @@ export default function CategoriesSidebar({
               {categories.map((cat) => {
                 const count = vendors[cat.id]?.length ?? cat.count ?? 0
                 const isActive = active === cat.id
+                const IconComponent = getIconForCategory(cat.id)
                 
                 return (
                   <button
@@ -187,9 +190,9 @@ export default function CategoriesSidebar({
                       }
                     `}
                   >
-                    <span className="shrink-0">
-                      {categoryIconMap[cat.id] ?? <Box className="w-6 h-6 text-primary" />}
-                    </span>
+                    {IconComponent && (
+                      <IconComponent className={`w-6 h-6 shrink-0 ${isActive ? 'text-primary-foreground' : 'text-primary'}`} />
+                    )}
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-base truncate">{cat.name}</div>
                     </div>
@@ -228,9 +231,12 @@ export default function CategoriesSidebar({
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-3">
-              <span>
-                {categoryIconMap[activeCategory?.id as string] ?? <Box className="w-7 h-7 text-primary" />}
-              </span>
+              {(() => {
+                const HeaderIcon = getIconForCategory(activeCategory?.id)
+                return HeaderIcon ? (
+                  <HeaderIcon className="w-12 h-12 text-primary shrink-0" />
+                ) : null
+              })()}
               <div>
                 <h2 className="font-heading text-4xl font-bold text-foreground">
                   {activeCategory?.name || "Vendors"}
@@ -248,7 +254,7 @@ export default function CategoriesSidebar({
           <div className="bg-card border border-border rounded-xl p-6 mb-6 shadow-sm">
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-heading text-xl font-semibold text-foreground flex items-center gap-2">
-                <span className="text-2xl">🔍</span>
+                <Search className="w-5 h-5" />
                 Filter Vendors
               </h3>
               {hasActiveFilters && (
