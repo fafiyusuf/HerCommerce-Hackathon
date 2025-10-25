@@ -1,7 +1,26 @@
 "use client"
 
 import { VendorCard } from "@/components/vendor-card"
-import { Menu, X, Search, DollarSign, MapPin } from "lucide-react"
+import {
+    Box,
+    Building2,
+    Camera,
+    Car,
+    DollarSign,
+    Hand,
+    Headphones,
+    Mail,
+    MapPin,
+    Menu,
+    Music,
+    Palette,
+    Scissors,
+    Search,
+    Shirt,
+    Sparkles,
+    Utensils,
+    X,
+} from "lucide-react"
 import * as React from "react"
 
 type Category = {
@@ -26,6 +45,25 @@ export default function CategoriesSidebar({
   const [searchQuery, setSearchQuery] = React.useState("")
   const [priceRange, setPriceRange] = React.useState("all")
   const [location, setLocation] = React.useState("all")
+
+  // Map category IDs to Lucide icons
+  const categoryIconMap: Record<string, React.ReactNode> = React.useMemo(
+    () => ({
+      makeup: <Palette className="w-6 h-6 text-primary" />,
+      "dress-renters": <Shirt className="w-6 h-6 text-primary" />,
+      catering: <Utensils className="w-6 h-6 text-primary" />,
+      decoration: <Sparkles className="w-6 h-6 text-primary" />,
+      dj: <Headphones className="w-6 h-6 text-primary" />,
+      henna: <Hand className="w-6 h-6 text-primary" />,
+      photography: <Camera className="w-6 h-6 text-primary" />,
+      invitation: <Mail className="w-6 h-6 text-primary" />,
+      venue: <Building2 className="w-6 h-6 text-primary" />,
+      music: <Music className="w-6 h-6 text-primary" />,
+      "hair-salons": <Scissors className="w-6 h-6 text-primary" />,
+      "car-rental": <Car className="w-6 h-6 text-primary" />,
+    }),
+    [],
+  )
 
   const activeCategory = React.useMemo(
     () => categories.find((c) => c.id === active) || categories[0],
@@ -149,9 +187,9 @@ export default function CategoriesSidebar({
                       }
                     `}
                   >
-                    {cat.icon && (
-                      <span className="text-4xl shrink-0">{cat.icon}</span>
-                    )}
+                    <span className="shrink-0">
+                      {categoryIconMap[cat.id] ?? <Box className="w-6 h-6 text-primary" />}
+                    </span>
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-base truncate">{cat.name}</div>
                     </div>
@@ -190,9 +228,9 @@ export default function CategoriesSidebar({
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-3">
-              {activeCategory?.icon && (
-                <span className="text-5xl">{activeCategory.icon}</span>
-              )}
+              <span>
+                {categoryIconMap[activeCategory?.id as string] ?? <Box className="w-7 h-7 text-primary" />}
+              </span>
               <div>
                 <h2 className="font-heading text-4xl font-bold text-foreground">
                   {activeCategory?.name || "Vendors"}
@@ -318,7 +356,7 @@ export default function CategoriesSidebar({
           {/* Vendors Grid */}
           {filteredVendors.length === 0 ? (
             <div className="bg-card border-2 border-dashed border-border rounded-xl p-16 text-center">
-              <div className="text-7xl mb-4">🔍</div>
+              <Search className="w-16 h-16 mb-4 text-primary" />
               <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
                 {hasActiveFilters ? "No matches found" : "No vendors yet"}
               </h3>
